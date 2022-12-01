@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import { SignInButton, ethos } from "ethos-connect";
 import { useCallback, useEffect, useState } from "react";
 import { Disconnect, Fund, Mint, WalletActions } from "../components";
-
+import Board from "../containers/Board";
+import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
   const { status, wallet } = ethos.useWallet();
 
@@ -29,34 +30,32 @@ const Home: NextPage = () => {
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Connected to wallet
               </h2>
-              <code>{wallet.address}</code>
+      
               <div className="place-content-center text-base font-medium text-ethos-primary space-x-1">
-                <div>
-                  Wallet balance: <code>{wallet.contents?.suiBalance}</code>{" "}
-                  Mist
-                </div>
+               
                 <div className="text-xs text-gray-500">
                   (1 sui is 10^9 Mist)
                 </div>
               </div>
             </div>
+            <div id="game"></div>
+          
             <div className="flex flex-col gap-4">
-              First, fund this wallet from the Sui faucet:
+        
+            
+               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Play
+              </h2>
+             
+              <h1>hey   <code>{wallet.address} </code> it's your turn</h1>
+              <h1>Wallet balance: <code>{wallet.contents?.suiBalance}</code>{" "} MIST</h1>
+
+               <Board/>
+              or
               <Fund
                 version={version}
                 reset={reset}
               />
-              then
-              <Mint 
-                version={version}
-                reset={reset}
-              />
-              or
-              <WalletActions 
-                version={version}
-                reset={reset}
-              />
-              or
               <Disconnect reset={reset} />
             </div>
           </div>
