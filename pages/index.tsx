@@ -47,8 +47,8 @@ const Home: NextPage = () => {
                 Play
               </h2>
              
-              <h1>hey   <code>{wallet.address} </code> it's your turn</h1>
-              <h1>Wallet balance: <code>{wallet.contents?.suiBalance}</code>{" "} MIST</h1>
+              <h1>hey<code>{wallet.address}</code> its your turn</h1>
+              <h2>Wallet balance: <code>{wallet.contents?.suiBalance}</code>{" "} mist</h2>
 
                <Board/>
               or
