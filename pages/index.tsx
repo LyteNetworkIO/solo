@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { SignInButton, ethos } from "ethos-connect";
 import { useCallback, useEffect, useState } from "react";
 import { Disconnect, Fund, Mint, WalletActions } from "../components";
-import Board from "../containers/Board";
+import Game from "../components/Game";
 import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
   const { status, wallet } = ethos.useWallet();
@@ -43,15 +43,16 @@ const Home: NextPage = () => {
             <div className="flex flex-col gap-4">
         
             
-               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Play
               </h2>
-             
-              <h1>hey<code>{wallet.address}</code> its your turn</h1>
-              <h2>Wallet balance: <code>{wallet.contents?.suiBalance}</code>{" "} mist</h2>
+               
+              <h2>Wallet balance: 
+                <code>{wallet.contents?.suiBalance}</code>{" "} mist
+              </h2>
 
-               <Board/>
-              or
+              <Game/>
+
               <Fund
                 version={version}
                 reset={reset}

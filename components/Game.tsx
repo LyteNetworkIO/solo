@@ -1,10 +1,10 @@
-
-import Square from "../components/Square";
-
+import Square from "./Square";
 import { useEffect, useState } from "react";
+import { ethos } from "ethos-connect";
+
+const { wallet } = ethos.useWallet();
 
 type Player = "X" | "O" | "BOTH" | null;
-
 
 function calculateWinner(squares: Player[]) {
   const lines = [
@@ -26,7 +26,7 @@ function calculateWinner(squares: Player[]) {
   return null;
 }
 
-function Board() {
+function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState<"X" | "O">(
     Math.round(Math.random() * 1) === 1 ? "X" : "O"
@@ -46,6 +46,7 @@ function Board() {
       }
       return val;
     });
+
     setSquares(newData);
     setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
   }
@@ -64,13 +65,12 @@ function Board() {
 
   return (
     <div>
-        
-     
+      <h1>Hey <code>{wallet.address}</code>, it's your turn</h1>
       {winner && winner !== "BOTH" && <p>Congratulations {winner}</p>}
       {winner && winner === "BOTH" && (
         <p>Congratulations you're both winners</p>
       )}
-
+      {/*onClick we set the square value */}
       <div className="grid">
         {Array(9)
           .fill(null)
@@ -92,4 +92,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default Game;
